@@ -1,12 +1,12 @@
 Param(
 	[Parameter(
 		Mandatory=$true,
-		HelpMessage="Subscription to check against"
+		HelpMessage="Subscription(s) to check against. If multiple subscriptions are there, then please use comma as delimiter without any quotes"
 		)]
 	    [ValidateNotNullOrEmpty()]
         [string[]]
-    	[Alias('Please provide the subscription to validate against')]	
-	    $Targetsubscription, #Mode
+    	[Alias('Please provide the subscriptions to validate against. If multiple subscriptions are there, then please use comma as delimiter without any quotes')]
+	    $Targetsubscriptions, #Mode
 	[Parameter(
 		Mandatory=$true,
         HelpMessage="Location to validate"
@@ -42,13 +42,21 @@ Function GetAuthHeader{
     return $authHeader
 }
 
+#this is used later for printing all the subscriptions we are comparing against
+$global:SubVersus = $null
 Function CreateBody{
+    $SubIDs = @()
+    #looping thru all the subscriptions
+    foreach ($Targetsubscription in $Targetsubscriptions)
+    {
+        $SubIDs += "subscriptions/$Targetsubscription,"
+        $global:SubVersus += "$Targetsubscription, "
+    }
+    #now adding these to the request body
     $body = @{
         'location' = $location
-        'subscriptionIds'= @(
-            "subscriptions/$Targetsubscription"
-          )     
-    }
+        'subscriptionIds'= $SubIDs     
+    }    
     return $body
 }
 
@@ -80,10 +88,8 @@ If ($Login) {
 $Auth=GetAuthHeader
 $Target=CreateBody
 
-
-
 Write-Host ("  Checking:  " + $azContext.Subscription.id)
-Write-host ("  Versus:    " + $Targetsubscription)
+Write-host ("  Versus:    " + $global:SubVersus)
 write-host ""
 
 $url=("https://management.azure.com/subscriptions/" + $azContext.subscription.id + "/providers/Microsoft.Resources/checkZonePeers/?api-version=2020-01-01")
