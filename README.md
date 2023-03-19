@@ -1,8 +1,38 @@
 # AZPeerMapping
 Comparing multiple subscriptions as that's how underlying REST API works which will help with a single REST API call for multiple subscriptions instead of calling this in a loop
 
-<b>Usage:</b>
+**Prerequisite** <br/>
+ This Script calls [CheckZonePeers API](https://learn.microsoft.com/en-us/rest/api/resources/subscriptions/check-zone-peers?tabs=HTTP) API and we need to make sure 'AvailabilityZonePeering' feature is registered before using this powershell scripts.
+<br/><br/>
+PS C:\> az feature register -n AvailabilityZonePeering --namespace Microsoft.Resources <br/>
+Once the feature 'AvailabilityZonePeering' is registered, invoking 'az provider register -n Microsoft.Resources' is required to get the change propagated
+{
+  "id": "/subscriptions/SubscriptionID1/providers/Microsoft.Features/providers/Microsoft.Resources/features/AvailabilityZonePeering",
+  "name": "Microsoft.Resources/AvailabilityZonePeering",
+  "properties": {
+    "state": "Registering"
+  },
+  "type": "Microsoft.Features/providers/features"
+}
+<br/><br/>
+You can check the status with the below command,<br/>
+PS C:\> az feature show -n AvailabilityZonePeering --namespace Microsoft.Resources <br/>
+{
+  "id": "/subscriptions/SubscriptionID1/providers/Microsoft.Features/providers/Microsoft.Resources/features/AvailabilityZonePeering",
+  "name": "Microsoft.Resources/AvailabilityZonePeering",
+  "properties": {
+    "state": "Registered"
+  },
+  "type": "Microsoft.Features/providers/features"
+}
+<br/><br/>
+PS C:\>az provider register -n Microsoft.Resources<br/>
+PS C:\><br/><br/>
+ 
 
+
+
+**Usage:** <br/>
 PS C:\> .\Check-AzureAZmapping.ps1 -Targetsubscriptions SubscriptionID2, SubscriptionID3 -location eastus2 -SourceSubscription SubscriptionID1
 
  This script validates the Availability Zone mapping between two subscriptions
