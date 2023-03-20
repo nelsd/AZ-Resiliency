@@ -45,3 +45,7 @@ availabilityZone&emsp;&emsp;&emsp;peers <br/>
 1&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{@{subscriptionId=SubscriptionID2; availabilityZone=3}, @{subscriptionId=SubscriptionID3; availabilityZone=1}} <br/>
 2&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{@{subscriptionId=SubscriptionID2; availabilityZone=1}, @{subscriptionId=SubscriptionID3; availabilityZone=2}} <br/>
 3&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{@{subscriptionId=SubscriptionID2; availabilityZone=2}, @{subscriptionId=SubscriptionID3; availabilityZone=3}} <br/>
+
+
+**NOTE:** <br/>
+This Script is developed on an "as-is" basis and this has not been properply tested. Before using it, please perform your own testing.
