@@ -6,7 +6,7 @@ This Repo has 2 files<br/>
 **1.> Resource SKU information in Azure Region and Avaialbility zones via ResourceSKU.ps1**<br/>
 **Usage:** <br/>
 Below command would generate a csv file in the same folder and all the arguments are optional. Please be aware that it would generate a large file depending upon your subscription and organization if you dont pass any arguments to the below command.<br/>
-PS C:\> .\ResourceSKU.ps1 -Targetsubscriptions <SubscriptionID1>, <SubscriptionID2> -resourceType "virtualMachines" -skuName "Standard_M128" -location "eastus2"
+PS C:\> .\ResourceSKU.ps1 -Targetsubscriptions SubscriptionID1, SubscriptionID2 -resourceType "virtualMachines" -skuName "Standard_M128" -location "eastus2"
 <br/><br/><br/><br/><br/><br/>
 
 **2.> AZ Peer Mapping information via Check-AzureAZmapping.ps1**</br>
