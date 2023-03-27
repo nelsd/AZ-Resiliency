@@ -20,7 +20,6 @@ Param(
 		Mandatory=$false,
         HelpMessage="Subscription used as source"
 		)]
-        [string[]]
         [Alias('Please provide the subscription used as the source - (optional)')]	
        $SourceSubscription
 )
@@ -78,6 +77,7 @@ $azContext = Get-AzContext
 If ($SourceSubscription -and $azContext.Subscription.id -ne $SourceSubscription) {
     Write-Host "  switchting subscription context" -ForegroundColor Yellow
     Set-AzContext -Subscription $SourceSubscription
+    $azContext = Get-AzContext
 }
 If (!($azContext)) {
     $Login = $true
