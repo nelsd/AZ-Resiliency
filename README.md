@@ -12,7 +12,7 @@ PS C:\> .\ResourceSKU.ps1 -Targetsubscriptions "SubscriptionID1", "SubscriptionI
 **2.> AZ Peer Mapping information via Check-AzureAZmapping.ps1**</br>
 Comparing multiple subscriptions as that's how underlying REST API works which will help with a single REST API call for multiple subscriptions instead of calling this in a loop<br/>
 **Prerequisite** <br/>
- This Script calls [CheckZonePeers API](https://learn.microsoft.com/en-us/rest/api/resources/subscriptions/check-zone-peers?tabs=HTTP) API and we need to make sure 'AvailabilityZonePeering' feature is registered before using this powershell scripts.
+ This Script calls [CheckZonePeers API](https://learn.microsoft.com/en-us/rest/api/resources/subscriptions/check-zone-peers?tabs=HTTP) API and we need to make sure 'AvailabilityZonePeering' feature is registered for the source subscription before using this REST API OR powershell scripts.
 <br/><br/>
 PS C:\> az feature register -n AvailabilityZonePeering --namespace Microsoft.Resources <br/>
 Once the feature 'AvailabilityZonePeering' is registered, invoking 'az provider register -n Microsoft.Resources' is required to get the change propagated
